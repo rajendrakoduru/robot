@@ -1,6 +1,7 @@
-FROM maven:3-jdk-8-alpine
-
-RUN adduser -D robot
+#FROM maven:3-jdk-8-alpine
+FROM registry1.dso.mil/ironbank/opensource/maven/maven-openjdk-8:3.8.4
+USER root
+RUN useradd robot
 RUN mkdir -p /usr/src/app
 RUN chown robot /usr/src/app
 
@@ -19,3 +20,5 @@ USER root
 RUN cp bin/robot.jar /usr/local/bin
 USER robot
 ENTRYPOINT ["robot"]
+
+
